@@ -1,0 +1,282 @@
+<div ng-controller="DcUpdateController" class="container form-group">
+    <br>
+    <tabset>
+        <tab ng-repeat="workspace in workspaces"
+             heading="{{selectedName || 'DC'}}"
+             active=workspace.active>
+
+            <div ng-controller="DcUpdateController">
+                <!--<h4>selectedDcName:  {{selectedDcName[0].name}}</h4>-->
+                <form name="form" ng-submit="postUpdate()">
+                    <div class="form-group">
+                        <br>
+                        <fieldset>
+                            <legend><strong>Playcards data collection</strong> </legend>
+                            <div class="col-sm-3">
+                                <label for="dcName">Data Center Name</label>
+                                <div id="dcName">
+                                    <isteven-multi-select
+                                            input-model="dcNames"
+                                            output-model="selectedDcName"
+                                            button-label="icon name"
+                                            item-label="icon name maker"
+                                            tick-property="ticked"
+                                            selection-mode="single"
+                                            >
+                                    </isteven-multi-select>
+                                </div>
+
+                                <label for="dcCountry">Data Center Country</label>
+                                <input id="dcCountry" name="dcCountry" type="text" class="form-control" ng-model="dcCountry"/>
+
+                                <label for="dcRegion">Data Center Region</label>
+                                <div id="dcRegion">
+                                    <isteven-multi-select
+                                            input-model="dcRegions"
+                                            output-model="selectedDcRegion"
+                                            button-label="icon name"
+                                            item-label="icon name maker"
+                                            tick-property="ticked"
+                                            selection-mode="single"
+                                            >
+                                    </isteven-multi-select>
+                                </div>
+
+                                <label for="dcSiteCode">Data Center Site Code</label>
+                                <input id="dcSiteCode" name="dcSiteCode" type="text" class="form-control" placeholder="data center site code"  ng-model="dcSiteCode"/>
+                                <label for="dcAddress">Data Center Address</label>
+                                <input id="dcAddress" name="dcAddress" type="text" class="form-control" placeholder="data center address"  ng-model="dcAddress"/>
+                                <label for="dcTier">Tier</label>
+                                <div id="dcTier">
+                                    <isteven-multi-select
+                                            input-model="dcTiers"
+                                            output-model="selectedDcTier"
+                                            button-label="icon name"
+                                            item-label="icon name maker"
+                                            tick-property="ticked"
+                                            selection-mode="single"
+                                            >
+                                    </isteven-multi-select>
+                                </div>
+                                <!--<input id="dcSku" name="dcSku" type="text" placeholder="data center sku" class="form-control" ng-model="dcSku"/>-->
+                                <label for="bu">CSC Business Unit</label>
+                                <div id="bu">
+                                    <isteven-multi-select
+                                            input-model="buList"
+                                            output-model="selectedBu"
+                                            button-label="icon name"
+                                            item-label="icon name maker"
+                                            tick-property="ticked"
+                                            selection-mode="single"
+                                            >
+                                    </isteven-multi-select>
+                                </div>
+                                <label for="dcManager">DC Manager</label>
+                                <input id="dcManager" name="dcManager" type="text" placeholder="data center manager" class="form-control" ng-model="dcManager"/>
+                                <label for="dcRegionalManager">Regional Manager</label>
+                                <input id="dcRegionalManager" name="dcRegionalManager" type="text" placeholder="regional manager" class="form-control"  ng-model="dcRegionalManager"/>
+
+                                <label for="dcOfferingGm">DC Offering GM</label>
+                                <input id="dcOfferingGm" name="dcOfferingGm" type="text" placeholder="dc offering gm" class="form-control"  ng-model="dcOfferingGm"/>
+
+                                <label for="workloads">Workloads</label>
+                                <div id="workloads">
+                                    <isteven-multi-select
+                                            input-model="workloadList"
+                                            output-model="selectedWorkloads"
+                                            button-label="icon name"
+                                            item-label="icon name maker"
+                                            tick-property="ticked"
+                                            selection-mode="multi"
+                                            >
+                                    </isteven-multi-select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                <label for="consolidationStrategy">Consolidation Strategy</label>
+                                <input id="consolidationStrategy" name="consolidationStrategy" type="text" placeholder="consolidation strategy" class="form-control"  ng-model="consolidationStrategy"/>
+                                <label for="annualDirectLeaseCost">Annual Direct/Lease Cost</label>
+                                <input id="annualDirectLeaseCost" name="annualDirectLeaseCost" type="text" placeholder="annual cost" class="form-control"  ng-model="annualDirectLeaseCost"/>
+                                <label for="keyAccounts">Key Accounts</label>
+                                <input id="keyAccounts" name="keyAccounts" type="text" placeholder="account-1, account-2" class="form-control"  ng-model="keyAccounts"/>
+                                <label for="sqFtCapacity">Sq Ft Capacity</label>
+                                <input id="sqFtCapacity" name="sqFtCapacity" type="text" placeholder="sq ft capacity" class="form-control" ng-model="sqFtCapacity"/>
+                                <label for="pctUtilization">% Utilization</label>
+                                <input id="pctUtilization" name="pctUtilization" type="text" placeholder="% utilization" class="form-control"  ng-model="pctUtilization"/>
+                                <label for="tenancyType">Tenancy Type</label>
+                                <div id="tenancyType">
+                                    <isteven-multi-select
+                                            input-model="tenancyTypes"
+                                            output-model="selectedTenancyTypes"
+                                            button-label="icon name"
+                                            item-label="icon name maker"
+                                            tick-property="ticked"
+                                            selection-mode="single"
+                                            >
+                                    </isteven-multi-select>
+                                </div>
+                                <label for="contractType">Contract Type</label>
+                                <div id="contractType">
+                                    <isteven-multi-select
+                                            input-model="contractTypes"
+                                            output-model="selectedContractTypes"
+                                            button-label="icon name"
+                                            item-label="icon name maker"
+                                            tick-property="ticked"
+                                            selection-mode="multi"
+                                            >
+                                    </isteven-multi-select>
+                                </div>
+                                <label for="vendor">Vendor</label>
+                                <input id="vendor" name="vendor" type="text" placeholder="vendor" class="form-control"  ng-model="vendor"/>
+                                <label for="valueOfUtilization">Value of Utilization in $</label>
+                                <input id="valueOfUtilization" name="valueOfUtilization" type="text" placeholder="$ of util..." class="form-control"  ng-model="valueOfUtilization"/>
+
+
+
+                                <label for="sqFtPctContracted">Sq Ft % Contracted</label>
+                                <input id="sqFtPctContracted" name="sqFtPctContracted" type="text" placeholder="Sq Ft % contracted" class="form-control"  ng-model="sqFtPctContracted"/>
+
+
+
+                                <label for="kwContracted">KW Contracted</label>
+                                <input id="kwContracted" name="kwContracted" type="text" placeholder="kw contracted" class="form-control"  ng-model="kwContracted"/>
+
+                                <label for="kwReservedForNewBusiness">KW Reserved for New Business</label>
+                                <input id="kwReservedForNewBusiness" name="kwReservedForNewBusiness" type="text" placeholder="kw contracted" class="form-control"  ng-model="kwReservedForNewBusiness"/>
+
+
+                            </div>
+
+
+
+                            <div class="col-sm-3">
+                                <label for="contractEndDate">Contract End Date</label>
+                                <input id="contractEndDate" name="contractEndDate" type="text" placeholder="mm/dd/yyyy" class="form-control"  ng-model="contractEndDate"/>
+                                <label for="buildDate">Build Date</label>
+                                <input id="buildDate" name="buildDate" type="text" placeholder="mm/dd/yyyy" class="form-control"  ng-model="buildDate"/>
+                                <label for="annualTaxBill">Annual Tax Bill</label>
+                                <input id="annualTaxBill" name="annualTaxBill" type="text" placeholder="tax bill" class="form-control"  ng-model="annualTaxBill"/>
+
+
+                                <label for="kwCapacity">KW Capacity</label>
+                                <input id="kwCapacity" name="kwCapacity" type="text" placeholder="kw capacity" class="form-control"  ng-model="kwCapacity"/>
+
+
+                                <label for="annualCost">Total Annual Cost</label>
+                                <input id="annualCost" name="annualCost" type="text" placeholder="annual cost" class="form-control"  ng-model="annualCost"/>
+                                <label for="sqFtRaised">Sq Ft Raised</label>
+                                <input id="sqFtRaised" name="sqFtRaised" type="text" placeholder="sq Ft raised" class="form-control"  ng-model="sqFtRaised"/>
+                                <label for="leaseEnds">Lease Ends</label>
+                                <input id="leaseEnds" name="leaseEnds" type="text" placeholder="mm/dd/yyyy" class="form-control"  ng-model="leaseEnds"/>
+
+                                <label for="dcProvider">DC Provider</label>
+                                <input id="dcProvider" name="dcProvider" type="text" placeholder="dc provider" class="form-control"  ng-model="dcProvider"/>
+                                <label for="dcProviderContact">DC Provider Contact</label>
+                                <input id="dcProviderContact" name="dcProviderContact" type="text" placeholder="provider contact" class="form-control"  ng-model="dcProviderContact"/>
+
+                                <label for="kwPctContracted">KW % Contracted</label>
+                                <input id="kwPctContracted" name="kwPctContracted" type="text" placeholder="kw % contracted" class="form-control"  ng-model="kwPctContracted"/>
+
+                                <label for="kw$PerHour">KW $ Per Hour</label>
+                                <input id="kw$PerHour" name="kw$PerHour" type="text" placeholder="kw $ per hour" class="form-control"  ng-model="kw$PerHour"/>
+
+                                <label for="operationsCost">Operations Cost</label>
+                                <input id="operationsCost" name="operationsCost" type="text" placeholder="operations cost" class="form-control"  ng-model="operationsCost"/>
+
+                                <label for="annualPowerCost">Annual Power Cost</label>
+                                <input id="annualPowerCost" name="annualPowerCost" type="text" placeholder="annual power cost" class="form-control"  ng-model="annualPowerCost"/>
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                <label for="sqFtContracted">Sq Ft Contracted</label>
+                                <input id="sqFtContracted" name="sqFtContracted" type="text" placeholder="sq ft contracted" class="form-control"  ng-model="sqFtContracted"/>
+
+                                <label for="sqFtReservedForNewBusiness">Sq Ft Reserved for new business</label>
+                                <input id="sqFtReservedForNewBusiness" name="sqFtReservedForNewBusiness" type="text" placeholder="reserved" class="form-control"  ng-model="sqFtReservedForNewBusiness"/>
+
+                                <label for="$kWL">$ / KWL</label>
+                                <input id="$kWL" name="$kWL" type="text" placeholder="$ / kW" class="form-control"  ng-model="$kWL"/>
+                                <label for="cscSecurityLead">CSC Security Lead</label>
+                                <input id="cscSecurityLead" name="cscSecurityLead" type="text" placeholder="csc sec. lead" class="form-control"  ng-model="cscSecurityLead"/>
+
+                            <label for="networkNodeType">Network Node Type</label>
+                            <div id="networkNodeType">
+                                <isteven-multi-select
+                                        input-model="networkNodeTypes"
+                                        output-model="selectedNetworkNodeTypes"
+                                        button-label="icon name"
+                                        item-label="icon name maker"
+                                        tick-property="ticked"
+                                        selection-mode="multi"
+                                        >
+                                </isteven-multi-select>
+                            </div>
+
+                                <label for="strategicNature">Strategic Nature</label>
+                                <div id="strategicNature">
+                                    <isteven-multi-select
+                                            input-model="strategicNatures"
+                                            output-model="selectedStrategicNatures"
+                                            button-label="icon name"
+                                            item-label="icon name maker"
+                                            tick-property="ticked"
+                                            selection-mode="multi"
+                                            >
+                                    </isteven-multi-select>
+                                </div>
+                                <label for="datacenterType">Datacenter Type</label>
+                                <div id="datacenterType">
+                                    <isteven-multi-select
+                                            input-model="datacenterTypes"
+                                            output-model="selectedDatacenterTypes"
+                                            button-label="icon name"
+                                            item-label="icon name maker"
+                                            tick-property="ticked"
+                                            selection-mode="multi"
+                                            >
+                                    </isteven-multi-select>
+                                </div>
+                                <label for="certifications">Certifications</label>
+                                <input id="certifications" name="certifications" type="text" placeholder="certifications" class="form-control"  ng-model="selectedCertifications"/>
+                                <label for="overallStrategy">Overall Strategy</label>
+                                <div id="overallStrategy">
+                                    <isteven-multi-select
+                                            input-model="overallStrategies"
+                                            output-model="selectedOverallStrategies"
+                                            button-label="icon name"
+                                            item-label="icon name maker"
+                                            tick-property="ticked"
+                                            selection-mode="multi"
+                                            >
+                                    </isteven-multi-select>
+                                </div>
+                            <!--</div>-->
+
+
+                            <!--<div class="col-sm-3">-->
+                                <br>
+                                <input type="submit" id="submit" value="Submit" ng-show="selectedDcName[0].name !== undefined" />
+                            </div>
+                        </fieldset>
+
+                    </div>
+                </form>
+            </div>
+        </tab>
+        <tab select="addWorkspace()">
+            <tab-heading> Add Data Center
+                <i class="icon-plus-sign"></i>
+            </tab-heading>
+        </tab>
+        <tab select="removeWorkspace()">
+            <tab-heading> Remove Selected Data Center
+                <i class="icon-plus-sign"></i>
+            </tab-heading>
+        </tab>
+    </tabset>
+    <br/>
+</div>

@@ -1,0 +1,63 @@
+<div class="container" id="admin-index" ng-controller="AdminController">
+    <br>
+    <tabset>
+        <tab
+             heading="User Administration"
+             active=workspace.active>
+
+                <form name="form">
+                    <div class="form-group">
+                        <br>
+                        <legend><strong>Users</strong> </legend>
+                            <div  dx-data-grid="usersGridOptions"></div>
+                                <br>
+                        <div class="col-sm-3">
+                        <button ng-click="grantSelectedRolesToSelectedUsers()">Grant selected Roles to selected Users</button>
+                        </div>
+                        <div class="col-sm-3">
+                            <button ng-click="removeSelectedUsers()">Remove selected Users</button>
+                        </div>
+                        <br>
+                        <legend><strong>Roles</strong> </legend>
+                            <div  dx-data-grid="rolesGridOptions"></div>
+                                <br>
+                        <legend><strong>Access Requests</strong> </legend>
+                            <div  dx-data-grid="accessRequestsGridOptions"></div>
+                        <br>
+                        <div class="col-sm-3">
+                            <button ng-click="grantRequestedRoles()">Grant Requested Roles</button>
+                        </div>
+                        <div class="col-sm-3">
+                            <button ng-click="removeSelectedAccessRequest()">Remove selected access request</button>
+                        </div>
+
+                    </div>
+                </form>
+        </tab>
+        <tab>
+            <br>
+            <tab-heading> Application Settings</tab-heading>
+            <form name="role-admin-form">
+                <div class="form-group">
+                    <fieldset>
+                        <legend><strong>Settings</strong> </legend>
+                        <div class="col-sm-6">
+                            <label for="roleName">Setting 1</label>
+                            <input id="roleName" name="roleName" type="text" class="form-control" ng-model="roleName"/>
+
+                            <label for="roleDescription">Setting 2</label>
+                            <input id="roleDescription" name="roleDescription" type="text" class="form-control" ng-model="roleDescription"/>
+                        </div>
+                    </fieldset>
+                </div>
+            </form>
+        </tab>
+        <tab>
+            <tab-heading>Playcards Automation</tab-heading>
+            <form id="generatePlaycards">
+                <button ng-click="generatePlaycardsFromDcInventory()">Generate Playcards From DC Inventory</button>
+            </form>
+        </tab>
+    </tabset>
+    <br/>
+</div>

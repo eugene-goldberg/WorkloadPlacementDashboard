@@ -1,0 +1,151 @@
+<div data-ng-controller="TabController" class="container form-group">
+    <br>
+    <tabset>
+        <tab ng-repeat="workspace in workspaces"
+             heading="{{workspace.name}}"
+             active=workspace.active>
+            <div ng-controller="FileUploadController">
+                <hr>
+                <!--FILE UPLOAD CONTROL-->
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="file" nv-file-select="" uploader="uploader" />
+                        </div>
+                        <div class="col-md-9" style="margin-bottom: 40px">
+                            <h3>Upload queue</h3>
+                            <p>Queue length: {{ uploader.queue.length }}</p>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th width="50%">Name</th>
+                                    <th ng-show="uploader.isHTML5">Size</th>
+                                    <th ng-show="uploader.isHTML5">Progress</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in uploader.queue">
+                                    <td><strong>{{ item.file.name }}</strong></td>
+                                    <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                    <td ng-show="uploader.isHTML5">
+                                        <div class="progress" style="margin-bottom: 0;">
+                                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                        <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                        <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                    </td>
+                                    <td nowrap>
+                                        <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                            <span class="glyphicon glyphicon-upload"></span> Upload
+                                        </button>
+                                        <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                            <span class="glyphicon glyphicon-trash"></span> Remove
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--END OF FILE UPLOAD CONTROL-->
+                <form name="form">
+                <div class="form-group">
+                    <fieldset>
+                        <legend><strong>Dataset Description</strong> </legend>
+                        <div class="col-sm-6">
+                            <label for="category">Category name</label>
+                            <div id="category">
+                                <isteven-multi-select
+                                        input-model="inputCategories"
+                                        output-model="outputCategories"
+                                        button-label="icon name"
+                                        item-label="icon name maker"
+                                        tick-property="ticked"
+                                        selection-mode="single"
+                                        >
+                                </isteven-multi-select>
+                            </div>
+                            <label for="documentAuthor">Document author</label>
+                            <input id="documentAuthor" name="documentAuthor" type="text" class="form-control" ng-model="documentAuthor"/>
+                            <label for="dateDocumentRecieved">Date document recieved</label>
+                            <input id="dateDocumentRecieved" name="dateDocumentRecieved" type="text" class="form-control" placeholder="05/24/2015"
+                                   ng-pattern='/^(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])\/(199\d)|([2-9]\d{3})$/'
+                                   required ng-model="dateDocumentReceived"/>
+                            <span ng-show="form.dateDocumentRecieved.$error.required">Date Required!</span>
+                            <span ng-show="form.dateDocumentRecieved.$error.pattern">Complete Format, should be MM/DD/YYYY</span>
+
+                            <label for="documentReviewer">Document reviewer</label>
+                            <input id="documentReviewer" name="documentReviewer" type="text" class="form-control" ng-model="documentReviewer"/>
+                            <label for="dataVersion">Data version</label>
+
+                            <div id="dataVersion">
+                            <isteven-multi-select
+                                    input-model="dataVersionValues"
+                                    output-model="outputDataVersions"
+                                    button-label="icon name"
+                                    item-label="icon name maker"
+                                    tick-property="ticked"
+                                    selection-mode="single"
+                                    >
+                            </isteven-multi-select>
+                                </div>
+                            <!--<input id="dataVersion" name="dataVersion" type="text" class="form-control" ng-model="dataVersion"/>-->
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="originalDocumentName">Original document name</label>
+                            <input id="originalDocumentName" name="originalDocumentName" type="text" class="form-control" ng-model="originalDocumentName"/>
+
+                            <label for="tabName">Sheet Name</label>
+                            <input id="tabName" name="tabName" type="text" class="form-control" ng-model="workspace.name"/>
+
+                            <label for="dateDocumentProduced">Date document produced</label>
+                            <input id="dateDocumentProduced" name="dateDocumentProduced" type="text" class="form-control" placeholder="05/24/2015"
+                                   ng-pattern='/^(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])\/(199\d)|([2-9]\d{3})$/'
+                                   required ng-model="dateDocumentProduced"/>
+                            <span ng-show="form.dateDocumentProduced.$error.required">Date Required!</span>
+                            <span ng-show="form.dateDocumentProduced.$error.pattern">Complete Format, should be MM/DD/YYYY</span>
+
+
+                            <label for="documentSubmitter">Document submitter</label>
+                            <input id="documentSubmitter" name="documentSubmitter" type="text" class="form-control" ng-model="documentSubmitter"/>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="originalSource">Original source</label>
+                            <input id="originalSource" name="originalSource" type="text" class="form-control" ng-model="originalSource"/>
+
+                            <label for="subject">Subject</label>
+                            <input id="subject" name="contentType" type="text" class="form-control" ng-model="subject"/>
+                        </div>
+
+
+                    </fieldset>
+                </div>
+                </form>
+            </div>
+        </tab>
+        <tab select="addWorkspace()">
+            <tab-heading> Add Sheet
+                <i class="icon-plus-sign"></i>
+            </tab-heading>
+        </tab>
+        <tab select="removeWorkspace()">
+            <tab-heading> Remove Selected Sheet
+                <i class="icon-plus-sign"></i>
+            </tab-heading>
+        </tab>
+    </tabset>
+    <br/>
+</div>

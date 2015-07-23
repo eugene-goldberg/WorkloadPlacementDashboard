@@ -1,0 +1,41 @@
+<div class="container" ng-controller="NewFunctionalityRequestController">
+    <br>
+    <legend><strong>New Functionality Requests</strong> </legend>
+    <div  dx-data-grid="newFunctionalityRequestsGridOptions"></div>
+    <br>
+    <form>
+        <div class="row">
+            <div class="col-sm-9">
+                <h5>Description</h5>
+                <textarea rows="6" cols="80">
+                    {{selectedRequestDescription}}
+                </textarea>
+            </div>
+        </div>
+        <div class="row">
+            <br>
+            <div class="col-sm-3">
+                <h5>Assigned to</h5>
+                <input type="text" ng-model="assignedTo">
+            </div>
+            <div class="col-sm-3">
+                <h5>Reviewed on</h5>
+                <input type="text" ng-model="reviewedOn">
+            </div>
+            <div class="col-sm-3">
+                <h5>Status</h5>
+                <input type="text" ng-model="status">
+            </div>
+            <div class="col-sm-3">
+                <h5>Comments</h5>
+                <textarea rows="2" cols="30" data-ng-model="comments">
+                    {{comments}}
+                </textarea>
+            </div>
+        </div>
+        <div>
+            <br>
+            <button ng-click="updateNewFunctionalityRequest()">Update Request</button>
+        </div>
+    </form>
+</div>

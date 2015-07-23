@@ -1,0 +1,100 @@
+<div class="container" ng-controller="NewFunctionalityRequestController">
+    <br>
+    <form>
+        <div class="form-group">
+            <legend><strong>New Functionality Request Form</strong> </legend>
+            <div class="row">
+                <div class="col-sm-4">
+                    <h5>Request Title</h5>
+                    <input type="text" ng-model="requestTitle">
+                </div>
+                <div class="col-sm-6">
+                    <h5>Description of desired functionality</h5>
+                        <textarea rows="4" cols="48" data-ng-model="description">
+                        </textarea>
+                </div>
+                <div class="col-sm-2">
+                    <h5>Requested Delivery Date</h5>
+                    <input type="text" placeholder="12/12/2015" ng-model="requestedDeliveryDate">
+                </div>
+            </div>
+            <div class="row">
+                <br>
+                <hr>
+                <fieldset>
+                    <div class="col-sm-3">
+                        <h6>Requestor's First Name</h6>
+                        <p>{{currentUser.firstName}}</p>
+
+                        <h6>Requestor's Last Name</h6>
+                        <p>{{currentUser.lastName}}</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <h6>Requestor's User Name</h6>
+                        <p>{{currentUser.username}}</p>
+
+                        <h6>Requestor's Email</h6>
+                        <p>{{currentUser.email}}</p>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <h6>Stakeholder's First Name</h6>
+                        <input type="text" ng-model="stakeholderFirstName">
+
+                        <h6>Stakeholder's Last Name</h6>
+                        <input type="text" ng-model="stakeholderLastName">
+                    </div>
+                    <div class="col-sm-3">
+                        <h6>Stakeholder's User Name</h6>
+                        <input type="text" ng-model="stakeholderUserName">
+
+                        <h6>Stakeholder's Email</h6>
+                        <input type="text" ng-model="stakeholderEmail">
+                    </div>
+                </fieldset>
+            </div>
+            <div class="row">
+                <fieldset>
+                    <div class="col-sm-6">
+                        <h5>Areas to which this functionality should be added</h5>
+                        <div id="appAreas">
+                            <isteven-multi-select
+                                    input-model="appAreas"
+                                    output-model="selectedAppAreas"
+                                    button-label="icon name"
+                                    item-label="icon name maker"
+                                    tick-property="ticked"
+                                    selection-mode="multi"
+                                    >
+                            </isteven-multi-select>
+                        </div>
+
+                        <div>
+                            <br>
+                            <button ng-click="submitNewFunctionalityRequest()">Submit Request</button>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-4">
+                        <h5>Request criticality</h5>
+                        <br>
+                        <div id="criticality">
+                            <isteven-multi-select
+                                    input-model="criticalityList"
+                                    output-model="selectedCriticality"
+                                    button-label="icon name"
+                                    item-label="icon name maker"
+                                    tick-property="ticked"
+                                    selection-mode="single"
+                                    >
+                            </isteven-multi-select>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+        </div>
+    </form>
+</div>
+

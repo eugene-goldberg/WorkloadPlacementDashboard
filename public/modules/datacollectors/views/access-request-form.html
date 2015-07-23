@@ -1,0 +1,56 @@
+<div class="container" ng-controller="AccessRequestController">
+    <br>
+    <form>
+        <div class="form-group">
+            <div class="row">
+                <fieldset>
+                    <legend><strong>Access Request Form</strong> </legend>
+                    <div class="col-sm-4">
+                        <h5>First Name</h5>
+                        <p>{{currentUser.firstName}}</p>
+
+                        <h5>Last Name</h5>
+                        <p>{{currentUser.lastName}}</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5>User Name</h5>
+                        <p>{{currentUser.username}}</p>
+
+                        <h5>Email</h5>
+                        <p>{{currentUser.email}}</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5>Reason for requesting access</h5>
+                        <textarea rows="2" cols="20" data-ng-model="reason">
+                        </textarea>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="row">
+                <fieldset>
+                    <div class="col-sm-4">
+                       <h5>Areas to be accessed</h5>
+                        <div id="appAreas">
+                            <isteven-multi-select
+                                    input-model="appAreas"
+                                    output-model="selectedAppAreas"
+                                    button-label="icon name"
+                                    item-label="icon name maker"
+                                    tick-property="ticked"
+                                    selection-mode="multi"
+                                    >
+                            </isteven-multi-select>
+                        </div>
+
+                        <div>
+                            <br>
+                            <button ng-click="submitAccessRequest()">Submit Request</button>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+            </div>
+        </div>
+    </form>
+</div>

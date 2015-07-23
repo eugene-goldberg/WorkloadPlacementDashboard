@@ -1,0 +1,131 @@
+
+<div ng-controller="PlaycardController">
+    <div style="position: absolute; top: 85px;left:5px; height: 50px;width: 790px; background-color: #3c2a59;color: #efefef;font-size: 2.0em;">{{playcard.dcName}}</div>
+    <div style="position: absolute; top: 140px;left: 5px; height: 140px;width: 150px; background-color: #efefef"><img ng-src="/modules/core/img/CDC-03.png" /></div>
+    <!--<div id="annualDirectLeaseCost" style="position: absolute; top: 282px;left: 5px; height: 60px;width: 150px; background-color: #3c2a59;color: #efefef">Annual Direct/Lease Cost Lease: {{playcard.annualDirectLeaseCost}}</div>-->
+    <div id="shim-01" style="position: absolute; top: 285px;left: 1px; height: 40px;width: 150px; background-color: #efefef"><img ng-src="/modules/core/img/shim-01.png" /></div>
+    <div style="position: absolute; top: 328px;left: 5px; height: 20px;width: 150px;background-color: #8c8f91;color: #efefef;text-align: center;vertical-align: middle">Key Accounts</div>
+
+    <div id="keyAccountsList" style="position: absolute; top: 354px;left: 5px; height: 135px;width: 150px; background-color: #e2e2e2;color: #262626;overflow: scroll;"><ul><li ng-repeat="account in playcard.keyAccounts">{{account}}</li></ul></div>
+
+    <div style="position: absolute; top: 493px;left: 5px; height: 20px;width: 150px;background-color: #8c8f91;color: #efefef;text-align: center;vertical-align: middle">Workloads</div>
+    <div id="workloads" style="position: absolute; top: 518px;left: 5px; height: 133px;width: 150px; background-color: #e2e2e2;color: #262626;overflow: scroll;"><ul><li ng-repeat="workload in playcard.workloads">{{workload}}</li></ul></div>
+
+
+    <div style="position: absolute;top: 140px; left: 160px; height: 77px; width: 65px; background-color: #0b4160;color: #efefef;font-size: 2.0em;text-align: center;"><img ng-src="/modules/core/img/dc-02.png" /></div>
+    <div style="position: absolute;top: 222px; left: 160px; height: 56px; width: 65px; background-color: #3a729c;color: #efefef"><img ng-src="/modules/core/img/tower-02.png" /></div>
+    <div style="position: absolute;top: 284px; left: 160px; height: 65px; width: 65px; background-color: #6191b9;color: #efefef"><img ng-src="/modules/core/img/lightningBolt-02.png" /></div>
+    <div style="position: absolute;top: 354px; left: 160px; height: 78px; width: 65px; background-color: #798968;color: #efefef;"><img style="display: block;margin-left: auto;margin-right: auto" ng-src="/modules/core/img/dollar-2.png" /></div>
+    <div style="position: absolute;top: 436px; left: 160px; height: 77px; width: 65px; background-color: #8e9091;color: #efefef"><img ng-src="/modules/core/img/team-01.png" /></div>
+    <div style="position: absolute;top: 517px; left: 160px; height: 133px; width: 65px; background-color: #606164;color: #efefef"><img ng-src="/modules/core/img/push-pin-2.png" /></div>
+
+    <div style="position: absolute;top: 140px; left: 230px; height: 18px; width: 110px; background-color: #0b4160;color: #efefef;font-size: small">Sq Ft Capacity</div>
+    <div style="position: absolute;top: 160px; left: 230px; height: 18px; width: 110px; background-color: #0b4160;color: #efefef;font-size: small">Sq Ft Contracted</div>
+    <div style="position: absolute;top: 180px; left: 230px; height: 18px; width: 110px; background-color: #0b4160;color: #efefef;font-size: small">Sq Ft Res New Bus</div>
+    <div style="position: absolute;top: 200px; left: 230px; height: 18px; width: 110px; background-color: #0b4160;color: #efefef;font-size: small">% Contracted</div>
+
+    <div style="position: absolute;top: 222px; left: 230px; height: 18px; width: 107px; background-color: #3a739e;color: #efefef;font-size: small">Tier</div>
+    <div style="position: absolute;top: 241px; left: 230px; height: 18px; width: 107px; background-color: #3a739e;color: #efefef;font-size: small">Contract Type</div>
+    <div style="position: absolute;top: 260px; left: 230px; height: 18px; width: 107px; background-color: #3a739e;color: #efefef;font-size: small">Lease Ends</div>
+
+    <div style="position: absolute;top: 284px; left: 230px; height: 21px; width: 107px; background-color: #6191b9;color: #efefef;font-size: small">KW Capacity</div>
+    <div style="position: absolute;top: 306px; left: 230px; height: 21px; width: 107px; background-color: #6191b9;color: #efefef;font-size: small">KW Contracted</div>
+    <div style="position: absolute;top: 328px; left: 230px; height: 21px; width: 107px; background-color: #6191b9;color: #efefef;font-size: small">KWL Res New B</div>
+
+    <div style="position: absolute;top: 354px; left: 230px; height: 18px; width: 107px; background-color: #798968;color: #efefef;font-size: small;text-align: left;vertical-align: middle">Direct Lease Cost</div>
+    <div style="position: absolute;top: 374px; left: 230px; height: 18px; width: 107px; background-color: #798968;color: #efefef;font-size: small;text-align: left;vertical-align: middle">Annual Power Cost</div>
+    <div style="position: absolute;top: 394px; left: 230px; height: 18px; width: 107px; background-color: #798968;color: #efefef;font-size: small;text-align: left;vertical-align: middle">Operational Cost</div>
+    <div style="position: absolute;top: 414px; left: 230px; height: 18px; width: 107px; background-color: #798968;color: #efefef;font-size: small;text-align: left;vertical-align: middle">Total Annual Cost</div>
+
+    <div style="position: absolute;top: 436px; left: 230px; height: 18px; width: 107px; background-color: #8e9091;color: #efefef;font-size: small">DC Manager</div>
+    <div style="position: absolute;top: 456px; left: 230px; height: 18px; width: 107px; background-color: #8e9091;color: #efefef;font-size: small">Regional Mgr</div>
+    <div style="position: absolute;top: 476px; left: 230px; height: 18px; width: 107px; background-color: #8e9091;color: #efefef;font-size: small">DC Offering Mgr</div>
+    <div style="position: absolute;top: 496px; left: 230px; height: 17px; width: 107px; background-color: #8e9091;color: #efefef;font-size: small">CSC Sec Lead</div>
+
+    <div style="position: absolute;top: 518px; left: 230px; height: 18px; width: 561px; background-color: #b5b5b5;color: #efefef;font-size: small;text-align: center">Consolidation Strategy</div>
+
+    <div style="position: absolute;top: 538px; left: 230px; height: 90px; width: 561px; background-color: #e2e2e2;font-size: small;overflow: scroll;"><ul><li ng-repeat="strategy in playcard.consolidationStrategy">{{strategy}}</li></ul></div>
+
+    <div style="position: absolute;top: 630px; left: 230px; height: 20px; width: 140px; background-color: #d72b28;color: #efefef;font-size: small;text-align: center">CLOSE</div>
+    <div style="position: absolute;top: 630px; left: 371px; height: 20px; width: 140px; background-color: #821158;color: #efefef;font-size: small;text-align: center">MOVE</div>
+    <div style="position: absolute;top: 630px; left: 512px; height: 20px; width: 140px; background-color: #cbac25;color: #efefef;font-size: small;text-align: center">MAINTAIN</div>
+    <div style="position: absolute;top: 630px; left: 653px; height: 20px; width: 138px; background-color: #83b145;color: #efefef;font-size: small;text-align: center">GROW</div>
+
+    <div style="position: absolute;top: 140px; left: 342px; height: 18px; width: 120px; background-color: #0b4160;color: #efefef;font-size: small">{{playcard.sqFtCapacity}}</div>
+    <div style="position: absolute;top: 160px; left: 342px; height: 18px; width: 120px; background-color: #0b4160;color: #efefef;font-size: small">{{playcard.sqFtRaised}}</div>
+    <div style="position: absolute;top: 180px; left: 342px; height: 18px; width: 120px; background-color: #0b4160;color: #efefef;font-size: small">{{playcard.pctUtilization}}</div>
+    <div style="position: absolute;top: 200px; left: 342px; height: 18px; width: 120px; background-color: #0b4160;color: #efefef;font-size: small">{{playcard.sqFtPctContracted}}</div>
+
+    <div id="tier" style="position: absolute;top: 222px; left: 339px; height: 18px; width: 120px; background-color: #e2e2e2;font-size: small">{{playcard.dcTier}}</div>
+    <div style="position: absolute;top: 241px; left: 339px; height: 18px; width: 120px; background-color: #e2e2e2;font-size: small">{{playcard.contractType}}</div>
+    <div style="position: absolute;top: 260px; left: 339px; height: 18px; width: 120px; background-color: #e2e2e2;font-size: small">{{playcard.leaseEnds}}</div>
+
+    <div style="position: absolute;top: 354px; left: 339px; height: 18px; width: 120px; background-color: #e2e2e2;font-size: small">{{playcard.annualDirectLeaseCost}}</div>
+    <div style="position: absolute;top: 374px; left: 339px; height: 18px; width: 120px; background-color: #e2e2e2;font-size: small">{{playcard.annualPowerCost}}</div>
+    <div style="position: absolute;top: 394px; left: 339px; height: 18px; width: 120px; background-color: #e2e2e2;font-size: small">{{playcard.operationsCost}}</div>
+    <div style="position: absolute;top: 414px; left: 339px; height: 18px; width: 120px; background-color: #e2e2e2;font-size: small">{{playcard.totalAnnualCost}}</div>
+
+    <!--<div style="position: absolute;top: 354px; left: 307px; height: 65px; width: 182px; background-color: #e2e2e2;font-size: small">{{playcard.certifications}}</div>-->
+
+    <div style="position: absolute;top: 284px; left: 339px; height: 20px; width: 120px; background-color: #e2e2e2;font-size: small">{{playcard.kwCapacity}}</div>
+    <div style="position: absolute;top: 306px; left: 339px; height: 20px; width: 120px; background-color: #e2e2e2;font-size: small">{{playcard.kwContracted}}</div>
+    <div style="position: absolute;top: 328px; left: 339px; height: 20px; width: 120px; background-color: #e2e2e2;font-size: small">{{playcard.kwReservedForNewBusiness}}</div>
+
+    <div style="position: absolute;top: 436px; left: 339px; height: 18px; width: 120px; background-color: #e2e2e2;font-size: small">{{playcard.dcManager}}</div>
+    <div style="position: absolute;top: 456px; left: 339px; height: 18px; width: 120px; background-color: #e2e2e2;font-size: small">{{playcard.regionalHead}}</div>
+    <div style="position: absolute;top: 476px; left: 339px; height: 18px; width: 120px; background-color: #e2e2e2;font-size: small">{{playcard.dcOfferingGm}}</div>
+    <div style="position: absolute;top: 496px; left: 339px; height: 17px; width: 120px; background-color: #e2e2e2;font-size: small">{{playcard.dcSecurityLead}}</div>
+
+    <div style="position: absolute;top: 222px; left: 462px; height: 18px; width: 99px; background-color: #3a739e;color: #efefef;font-size: small">Build Date</div>
+    <div style="position: absolute;top: 241px; left: 462px; height: 18px; width:99px; background-color: #3a739e;color: #efefef;font-size: small">Vendor</div>
+    <div style="position: absolute;top: 260px; left: 462px; height: 18px; width: 99px; background-color: #3a739e;color: #efefef;font-size: small">Value of Util in $</div>
+
+    <div style="position: absolute;top: 222px; left: 563px; height: 18px; width:228px; background-color: #e2e2e2;font-size: small">{{playcard.buildDate}}</div>
+    <div style="position: absolute;top: 241px; left: 563px; height: 18px; width: 228px; background-color: #e2e2e2;font-size: small">{{playcard.vendor}}</div>
+    <div style="position: absolute;top: 260px; left: 563px; height: 18px; width: 228px; background-color: #e2e2e2;font-size: small">{{playcard.valueOfUtilization}}</div>
+
+    <div style="position: absolute;top: 284px; left: 461px; height: 20px; width: 100px; background-color: #6191b9;color: #efefef;font-size: small">% Contracted</div>
+    <div style="position: absolute;top: 306px; left: 461px; height: 20px; width: 100px; background-color: #6191b9;color: #efefef;font-size: small">$ per KW Hr</div>
+    <div style="position: absolute;top: 328px; left: 461px; height: 20px; width: 100px; background-color: #6191b9;color: #efefef;font-size: small">$ / KWL</div>
+
+    <div style="position: absolute;top: 354px; left: 461px; height: 18px; width: 330px; background-color: #b5b5b5;color: #efefef;font-size: small;text-align: center">Data Center Address</div>
+
+    <div style="position: absolute;top: 394px; left: 461px; height: 18px; width: 330px; background-color: #b5b5b5;color: #efefef;font-size: small;text-align: center">Certifications</div>
+
+    <div style="position: absolute;top: 436px; left: 461px; height: 18px; width: 100px; background-color: #8e9091;color: #efefef;font-size: small">DC Provider</div>
+    <div style="position: absolute;top: 456px; left: 461px; height: 18px; width: 100px; background-color: #8e9091;color: #efefef;font-size: small">DC Provider POC</div>
+    <div style="position: absolute;top: 476px; left: 461px; height: 18px; width: 100px; background-color: #8e9091;color: #efefef;font-size: small">Region</div>
+    <div style="position: absolute;top: 496px; left: 461px; height: 17px; width: 100px; background-color: #8e9091;color: #efefef;font-size: small">Strategic Nature</div>
+
+    <div style="position: absolute;top: 284px; left: 563px; height: 20px; width: 228px; background-color: #e2e2e2;font-size: small">{{playcard.kwPctContracted}}</div>
+    <div style="position: absolute;top: 306px; left: 563px; height: 20px; width: 228px; background-color: #e2e2e2;font-size: small">{{playcard.kw$PerHour}}</div>
+    <div style="position: absolute;top: 328px; left: 563px; height: 20px; width: 228px; background-color: #e2e2e2;font-size: small">{{playcard.$kWl}}</div>
+
+    <div style="position: absolute;top: 374px; left: 461px; height: 18px; width: 330px; background-color: #e2e2e2;font-size: small">{{playcard.dcAddress}}</div>
+    <div style="position: absolute;top: 414px; left: 461px; height: 18px; width: 330px; background-color: #e2e2e2;font-size: small">{{playcard.certifications}}</div>
+
+
+    <div style="position: absolute;top: 436px; left: 563px; height: 18px; width: 228px; background-color: #e2e2e2;font-size: small">{{playcard.dcProvider}}</div>
+    <div style="position: absolute;top: 456px; left: 563px; height: 18px; width: 228px; background-color: #e2e2e2;font-size: small">{{playcard.dcProviderContact}}</div>
+    <div style="position: absolute;top: 476px; left: 563px; height: 17px; width: 228px; background-color: #e2e2e2;font-size: small">{{playcard.dcRegion}}</div>
+    <div style="position: absolute;top: 495px; left: 563px; height: 18px; width: 228px; background-color: #e2e2e2;font-size: small">{{playcard.strategicNatureOfDc}}</div>
+
+    <div style="position: absolute; top: 138px; left: 540px; height: 70px;width: 144px; font-size: small"><img ng-src="/modules/core/img/world-map-transparent-hi.png" /></div>
+
+    <div style="position: absolute; top: 68px;left:820px;">
+        <label for="dcName">Data Center Name</label>
+        <div id="dcName">
+            <isteven-multi-select
+                    input-model="dcNames"
+                    output-model="selectedDcName"
+                    button-label="icon name"
+                    item-label="icon name maker"
+                    tick-property="ticked"
+                    selection-mode="single"
+                    >
+            </isteven-multi-select>
+        </div>
+    </div>
+
+</div>
+
