@@ -5,14 +5,63 @@ angular.module('datacollectors').controller('ReviewBoardController', ['$scope', 
     function($scope, $http, $stateParams, $location, Authentication, Datacollectors) {
         $scope.authentication = Authentication;
 
+        $scope.currentUser = Authentication.user;
+
+        $scope.userRole;
+
+        $scope.authorizedUser = false;
+
+        $scope.selectedOpportunityId;
+
+        $scope.vote;
+
+        function determineUserAuthorization(){
+            //var authorizedRole;
+            //authorizedRole = $.grep(Authentication.user.roles,function(element, index){
+            //    return ( element.indexOf('product-manager') );
+            //});
+            $scope.currentUser.roles.forEach(function(role){
+               if(role === 'product-manager'){
+                    console.log('This user is a product manager');
+                    $scope.authorizedUser = true;
+                    $scope.userRole = role;
+                }
+                if(role === 'gdn-oversight'){
+                    console.log('This user is a gdn oversight');
+                    $scope.authorizedUser = true;
+                    $scope.userRole = role;
+                }
+                if(role === 'relationship-manager'){
+                    console.log('This user is a relationship manager');
+                    $scope.authorizedUser = true;
+                    $scope.userRole = role;
+                }
+            });
+        }
+
+        determineUserAuthorization();
+
+        $scope.voteApprove = function(){
+          $scope.vote = 'Approve';
+            //will make http post here, capturing opportunity id, vote, date voted, and comments
+            //this post should update the DC record, macthed by the DataCenterName
+        };
+
+        $scope.voteDisapprove = function(){
+            $scope.vote = 'Need To Discuss';
+            //will make http post here, capturing opportunity id, vote, date voted, and comments
+            //this post should update the DC record, macthed by the DataCenterName
+        };
+
         var data = [{
             "ID": 1,
             "OpportunityName": "Carrier Ent - D 123",
             "AccountName": "Carrier Enterprises",
             "CSCOpportunityID": "D-10170894",
-            "ElBudget": "$5,2300",
-            "ContractStartDate": "12/12/2016",
+            "KWL": "$5,2300",
+            "StartDate": "12/12/2016",
             "RequestedDataCenters": "QTS Chicago, QTS Miami",
+            "Status":   "Pending review",
             "DataCenters": [{
                 "DataCenterName": "QTS Chicago",
                 "Region": "Americas",
@@ -32,9 +81,10 @@ angular.module('datacollectors').controller('ReviewBoardController', ['$scope', 
                 "OpportunityName": "AON App Mod 042",
                 "AccountName": "AON",
                 "CSCOpportunityID": "D-10170042",
-                "ElBudget": "$7,4200",
-                "ContractStartDate": "09/12/2015",
+                "KWL": "$7,4200",
+                "StartDate": "09/12/2015",
                 "RequestedDataCenters": "Sentinel Chicago",
+                "Status":   "Pending review",
                 "DataCenters": [{
                     "DataCenterName": "Sentinel Chicago",
                     "Region": "Americas",
@@ -47,9 +97,10 @@ angular.module('datacollectors').controller('ReviewBoardController', ['$scope', 
                 "OpportunityName": "Zurich App Mod 042",
                 "AccountName": "Zurich",
                 "CSCOpportunityID": "D-10170042",
-                "ElBudget": "$9,4200",
-                "ContractStartDate": "09/12/2015",
+                "KWL": "$9,4200",
+                "StartDate": "09/12/2015",
                 "RequestedDataCenters": "Sentinel Chicago",
+                        "Status":   "Pending review",
                 "DataCenters": [{
                     "DataCenterName": "Sentinel Chicago",
                     "Region": "Americas",
@@ -64,9 +115,10 @@ angular.module('datacollectors').controller('ReviewBoardController', ['$scope', 
                 "OpportunityName": "Motorola App Mod 042",
                 "AccountName": "Motorola",
                 "CSCOpportunityID": "D-10170765",
-                "ElBudget": "$3,4200",
-                "ContractStartDate": "09/12/2017",
+                "KWL": "$3,4200",
+                "StartDate": "09/12/2017",
                 "RequestedDataCenters": "QTS Chicago",
+                "Status":   "Pending review",
                 "DataCenters": [{
                     "DataCenterName": "QTS Chicago",
                     "Region": "Americas",
@@ -101,20 +153,25 @@ angular.module('datacollectors').controller('ReviewBoardController', ['$scope', 
             columns: [{
                 dataField: 'CSCOpportunityID',
                 caption: 'Opportunity ID',
-                width: 140
+                width: 120
             },
-                'OpportunityName',
+                {
+                  dataField: 'OpportunityName',
+                    caption: 'Name',
+                    width:  110
+                },
                 'AccountName', {
-                    dataField: 'ElBudget',
-                    caption: 'Elect. Budget',
-                    width: 120
+                    dataField: 'KWL',
+                    caption: 'KWL',
+                    width: 80
                 }, {
                     dataField: 'RequestedDataCenters',
                     width: 180
                 }, {
-                    dataField: 'ContractStartDate',
+                    dataField: 'StartDate',
                     dataType: 'date'
-                }
+                },
+                'Status'
             ],
             masterDetail: {
                 enabled: true,
@@ -148,6 +205,17 @@ angular.module('datacollectors').controller('ReviewBoardController', ['$scope', 
             },
             selection: {
                 mode: 'single'
+            },
+            onSelectionChanged: function (selecteditems) {
+                var data = selecteditems.selectedRowsData;
+                if(data.length > 0){
+                    $scope.vote = '';
+                    $scope.selectedOpportunityId = data[0].CSCOpportunityID;
+                    $scope.comments = '';
+                }
+                else {
+
+                }
             }
         }
 }]);

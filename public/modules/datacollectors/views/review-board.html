@@ -1,9 +1,33 @@
 <div ng-controller="ReviewBoardController">
     <h3>Review Board</h3>
-    <div class="row">
+    <div class="row" ng-show="authorizedUser">
         <div class="col-sm-12">
             <div  dx-data-grid="reviewBoardGridOptions"></div>
         </div>
 
+        <div ng-show="selectedOpportunityId">
+            <h4>Now voting on:  {{selectedOpportunityId}}</h4>
+        </div>
+
+        <div class="btn-group btn-group-justified" ng-show="selectedOpportunityId">
+            <a href="javascript:void(0);" ng-click="voteApprove()" class="btn btn-default">Approve</a>
+            <a href="javascript:void(0);" ng-click="voteDisapprove()" class="btn btn-default">Need to discuss</a>
+        </div>
+
+        <div class="col-sm-12" ng-show="selectedOpportunityId">
+            <h5>Comments</h5>
+                <textarea rows="2" cols="80" data-ng-model="comments">
+                    {{comments}}
+                </textarea>
+        </div>
+
+        <div ng-show="selectedOpportunityId" class="col-sm-6">
+            <br>
+            <h5>Vote:  {{vote}}</h5>
+            <br>
+            <h5>Voting as:   {{userRole}}</h5>
+        </div>
+
     </div>
 </div>
+
