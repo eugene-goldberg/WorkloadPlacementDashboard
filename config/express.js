@@ -19,6 +19,7 @@ var fs = require('fs'),
     ObjectID = require('mongodb').ObjectID,
     format = require('date-format'),
     nodemailer = require('nodemailer'),
+    socketio = require('socket.io'),
 	mongoStore = require('connect-mongo')({
 		session: session
 	}),
@@ -1838,6 +1839,13 @@ module.exports = function(db) {
         });
     });
 
+    app.post('/salesforce_data_review', function(req, res){
+
+        //res.send(201);
+        var socketio = req.app.get('socketio');
+        socketio.sockets.emit('updated','salesforce_data_review');
+    });
+
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -1946,5 +1954,10 @@ module.exports = function(db) {
 	}
 
 	// Return Express server instance
+    // Attach Socket.io
+    var server = http.createServer(app);
+    var io = socketio.listen(server);
+    app.set('socketio', io);
+    app.set('server', server);
 	return app;
 };

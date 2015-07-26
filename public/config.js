@@ -3,9 +3,9 @@
 // Init the application configuration module for AngularJS application
 var ApplicationConfiguration = (function() {
 	// Init module configuration options
-	var applicationModuleName = 'datamanager-02';
+	var applicationModuleName = 'datamanager-03';
 	var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',
-		'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils','dx'];
+		'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils','dx','ngSocket'];
 
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {

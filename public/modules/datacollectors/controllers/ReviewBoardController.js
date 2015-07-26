@@ -1,8 +1,9 @@
 'use strict';
 
 // Datacollectors controller
-angular.module('datacollectors').controller('ReviewBoardController', ['$scope', '$http', '$stateParams', '$location', 'Authentication', 'Datacollectors',
-    function($scope, $http, $stateParams, $location, Authentication, Datacollectors) {
+angular.module('datacollectors').controller('ReviewBoardController', ['$scope', '$http', '$stateParams', '$location',
+    '$socket', 'Authentication', 'Datacollectors',
+    function($scope, $http, $stateParams, $location, $socket, Authentication, Datacollectors) {
         $scope.authentication = Authentication;
 
         $scope.currentUser = Authentication.user;
@@ -14,6 +15,10 @@ angular.module('datacollectors').controller('ReviewBoardController', ['$scope', 
         $scope.selectedOpportunityId;
 
         $scope.vote;
+
+        $socket.on('updated', function(param) {
+            alert('UPDATED ' + param);
+        });
 
         function determineUserAuthorization(){
             //var authorizedRole;
@@ -43,14 +48,28 @@ angular.module('datacollectors').controller('ReviewBoardController', ['$scope', 
 
         $scope.voteApprove = function(){
           $scope.vote = 'Approve';
-            //will make http post here, capturing opportunity id, vote, date voted, and comments
-            //this post should update the DC record, macthed by the DataCenterName
+            //will make http post here to '/salesforce_data_review', capturing opportunity id, which role have voted, vote, role-date voted, and comments
+            //this post should update the DC record, matched by the DataCenterName
+            $http.post('/salesforce_data_review', {})
+                .success(function(data, status, headers, config) {
+                    alert('Update successful');
+                }).
+                error(function(data, status, headers, config) {
+                    alert('Error while updating');
+                });
         };
 
         $scope.voteDisapprove = function(){
             $scope.vote = 'Need To Discuss';
-            //will make http post here, capturing opportunity id, vote, date voted, and comments
-            //this post should update the DC record, macthed by the DataCenterName
+            //will make http post here to '/salesforce_data_review', capturing opportunity id, which role have voted, vote, role-date voted, and comments
+            //this post should update the DC record, matched by the DataCenterName
+            $http.post('/salesforce_data_review', {})
+                .success(function(data, status, headers, config) {
+                    alert('Update successful');
+                }).
+                error(function(data, status, headers, config) {
+                    alert('Error while updating');
+                });
         };
 
         var data = [{

@@ -4,9 +4,10 @@
 angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies);
 
 // Setting HTML5 Location Mode
-angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider',
-	function($locationProvider) {
+angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider','$socketProvider',
+	function($locationProvider,$socketProvider) {
 		$locationProvider.hashPrefix('!');
+		$socketProvider.setUrl("http://localhost:3004");
 	}
 ]);
 
